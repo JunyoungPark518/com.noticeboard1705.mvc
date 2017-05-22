@@ -22,7 +22,7 @@ public class BoardDAOImpl implements BoardDAO {
 	private BoardDAOImpl(){}
 		
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/hanbit";
+	private static final String URL = "jdbc:mysql://203.236.209.96:3306/hanbit";
 	private static final String USER = "hanbit";
 	private static final String PW = "hanbit";
 /*	public static void main(String[] args) {

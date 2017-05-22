@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+/* reset style */
+html, body {
+margin: 0;padding: 0;border: 0;font-size: 12px;color:#666;font-family:'Dotum', tahoma,arial,sans-serif,verdana,helvetica;
+background: transparent;} 
+h1,h2,h3,h4,h5,h6,p{margin-top:0;}
+fieldset, img{border:0;}
+table{border-collapse:collapse;border-spacing :0;}
+/* caption, th, td{text-align : left;vertical-align : top;font-weight : normal;} */
+input, textarea, select{font-size:110%;line-height:1.1;}
+abbr, acronym{border-bottom : .1em dotted;cursor : help;}
+sup{vertical-align : text-top;}
+sub{vertical-align : text-bottom;}
+blockquote, q {quotes: none;}  
+a:link {color: #808080;} /* unvisited link */
+a:visited {color: #808080;}/* visited link */  
+a:hover {color: #808080;}/* mouse over link */
+a:active {color: #408080;} /* selected link */  
+.app-bg-color-black{background-color: black;}
+.app-bg-color-skyblue{background-color:skyblue;}
+.app-bg-color-darkgray{background-color:#5a5a5a;}
+.app-border-dotted {border-style: dotted;}
+.app-border-dashed {border-style: dashed;}
+.app-border-solid {border-style: solid;}
+.app-border-double {border-style: double;}
+.app-border-groove {border-style: groove;}
+.app-border-ridge {border-style: ridge;}
+.app-border-inset {border-style: inset;}
+.app-border-outset {border-style: outset;}
+.app-border-none {border-style: none;}
+.app-border-hidden {border-style: hidden;}
+.app-border-mix {border-style: dotted dashed solid double;}
+.app-border-blue{color: blue;}
+.app-border-red{color: red;}
+.app-border-yellow{color: yellow;}
+.app-border-white{color: white;}
+.app-display-block{display: block;}
+.app-display-inline{display: inline;}
+.app-display-none{display: none;} /* no space */
+.app-display-hidden{visibility: hidden;} /* taking space */
+.app-event-hover:hover{background-color: blue;}
+.app-font-bold{ font-weight: bold;}
+.app-font-italic{font-style: italic;}
+.app-gnb {list-style-type: none;margin: 0;padding: 0;overflow: hidden;background-color: #333;}
+.app-gnb li {float: left;}
+.app-gnb li a { display: block;color: white;text-align: center;padding: 14px 16px;text-decoration: none;}
+.app-gnb li a:hover {background-color: #ff0000;}
+.app-height-full-size{height:100%;}
+.app-list-circle{list-style-type: circle;}
+.app-list-square{list-style-type: square;}
+.app-list-upper-roman{list-style-type: upper-roman;}
+.app-list-lower-alpha{list-style-type: lower-alpha;}
+.app-lnb {list-style-type: none;margin: 0;padding: 0;width: 200px;background-color: #f1f1f1;border: 1px solid #555;}
+.app-lnb li a {display: block;color: #000;padding: 8px 16px;text-decoration: none;}
+.app-lnb li {text-align: center;border-bottom: 1px solid #555;}
+.app-lnb li:last-child {border-bottom: none;}
+.app-lnb li a.active {background-color: #4CAF50;color: white;}
+.app-lnb li a:hover:not(.active) {background-color: #555;color: white;}
+.app-margin-center{margin: 0 auto;}
+.app-pagination {list-style-type: none;margin: 0;padding: 0;overflow: hidden;background-color: white;}
+.app-pagination li {float: left;}
+.app-pagination li a {display: block;color: white;text-align: center;padding: 14px 16px;text-decoration: none;}
+.app-pagination li a:hover {background-color: white;}
+.app-position-fixed{position: fixed;}
+.app-position-absolute{position: absolute;}
+.app-position-relative{position: relative;}
+.app-table{border:1px solid #585858;border-collapse: collapse;}
+.app-table tr{border:1px solid #585858;border-collapse: collapse;}
+.app-table tr>th{border:1px solid #585858;border-collapse: collapse;}
+.app-table tr>td{border:1px solid #585858;border-collapse: collapse;}
+.app-table-bottom{border-bottom:1px solid #585858;border-collapse: collapse;}
+.app-table-bottom tr{border-bottom:1px solid #585858;border-collapse: collapse;}
+.app-table-bottom tr th{border-bottom:1px solid #585858;border-collapse: collapse;}
+.app-table-bottom tr td{border-bottom:1px solid #585858;border-collapse: collapse;}
+.app-table-even tr:nth-child(even){background-color:#ffffb9}
+.app-table-odd tr:nth-child(odd){background-color:#ffffb9}
+.app-text-center{text-align: center;}
+.app-text-left{text-align: left;}
+.app-text-right{text-align: right;}
+.app-text-no-underline{text-decoration: none;}
+.app-text-overline{text-decoration: overline;}
+.app-text-line-through{text-decoration: line-through;}
+.app-width-full-size{width: 100%;}

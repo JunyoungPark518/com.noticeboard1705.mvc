@@ -18,6 +18,6 @@
 	</style>
 </head>
 <body>
-	<a href="${context}/board.do?action=list&pageName=main&pageNumber=1">보드로 가기</a>
+	<a href="${context}/board.do?action=list&pageName=list&pageNumber=1">보드로 가기</a>
 </body>
 </html>
