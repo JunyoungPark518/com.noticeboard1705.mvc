@@ -7,11 +7,11 @@
 <html lang="en">
 <head>
 	<title>Board</title>
-		<meta charset="UTF-8" />
-	 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -27,22 +27,20 @@
 		<button type="button" class="btn btn-primary" style="width:100px">SUBMIT</button>
 		<div style="margin:20px 0" >
 			<span> 총게시글수 ${requestScope.count}</span>
-			<button class="btn btn-danger" style="float:right;width:100px">글쓰기</button>
+			<button onclick="moveTo('write')" class="btn btn-danger" style="float:right;width:100px">글쓰기</button>
 		</div>
 	</div>
 	<%-- <a href="${context}/board.do?action=move&pageName=write"> --%>
 	 <table class="table table-hover" style="width:90%;margin:0 auto;">
 		<tr class="hanbit-table tr">
 			<td >NO</td>
-			<td >제 목</td>
-			<td >내 용</td>
+				<td>제 목</td>
+				<td >내 용</td>
 			<td>작성자</td>
-			<td>등록일</td>
-			<td>조회수</td>
+				<td>등록일</td>
+				<td>조회수</td>
 		</tr>
-		
 	<c:forEach var="article" items="${requestScope.list}">
-	
 		<tr>
 			<td>${article.seqNo}</td>
 			<td>${article.title}</td>
@@ -81,7 +79,10 @@
 		</ul>
 	</nav> 
 </div>
-
 </body>
-
+<script>
+function moveTo(x){
+	location.href='${context}/board.do?action=move&pageName='+x;
+}
+</script>
 </html>
