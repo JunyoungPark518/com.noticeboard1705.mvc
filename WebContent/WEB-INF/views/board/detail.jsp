@@ -15,6 +15,7 @@
 	      		<textarea class="form-control" rows="20" id="comment"></textarea>
 		    </div>
 	    </div>
+	<a href="${context}/board.do?action=delete"><input type="submit" class="btn btn-danger" style="float:right;width:100px;margin-right:10px" value="DELETE"/></a>
 	<a href="${context}/board.do?action=move&pageName=upload"><input type="submit" class="btn btn-warning" style="float:right;width:100px;margin-right:10px" value="UPLOAD"/></a>
 	<a href="${context}/board.do?action=move&pageName=update"><input type="submit" class="btn btn-success" style="float:right;width:100px;margin-right:10px" value="UPDATE"/></a>
 </div>

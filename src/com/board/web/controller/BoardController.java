@@ -194,7 +194,9 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("content", bean.getContent());
 			request.setAttribute("writer", bean.getWriter());
 			request.setAttribute("regiDate", bean.getRegiDate());
-			request.getRequestDispatcher(view).forward(request, response);
+			request
+			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/list.jsp")
+			.forward(request, response);
 			break;
 		case "detail":
 			System.out.println("delete entered form controller");
