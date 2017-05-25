@@ -6,56 +6,32 @@
 <!doctype html>
 <html lang="en">
 <head>
+	<title>Board</title>
 	<meta charset="UTF-8" />
-	<script src="${js}/jquery-3.1.1.js"></script>
-	<title>update-수정 페이지</title>
-	<style type="text/css">
-	.wrapper{
-	  width: 100%;
-	}
-	.hanbit-write{
-	margin: 0 auto;
-	width: 23.5%;
-	}
-	.hanbit-title{
-	margin-bottom: 10px;
-	width: 99%;
-	}
-	.hanbit-btn {
-    border: none;
-    color: white;
-    padding: 5px 40px;
-    font-size: 16px;
-    cursor: pointer;}
-       
-	.submit {background-color: #4CAF50;}
-    .submit:hover {background-color: #46a049;}
-    .cancle {background-color: #f44336;;} /* Blue */
-    .cancle:hover {background: #da190b;}
-    .cancleBtn{
-    float: left;}
-    .submitBtn{
-    float: right;}
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel= "stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/magnific-popup.min.css" />
+	<style>
+	.white-popup {position: relative;background: #FFF;padding: 10px;width:360px;height:150px; max-width: 500px;margin: 20px auto;}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src= "https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js" ></script >
 </head>
 <body>
-<form action="${context}/board.do">
-<div style="position: relative;left: 37.5%;"><h1>수정 페이지</h1></div>
-<div class="wrapper">
-<div class="hanbit-write">
-    <input class="hanbit-title" type="text" name="title" placeholder="제목" /><br />
-	<textarea rows="10" cols="50" name="content"  placeholder="작성글을 입력 하여 주세요"></textarea><br />
-	<span class="cancleBtn"><a href="${context}/board.do?action=move&pageName=detail"><button class="hanbit-btn cancle">취소</button></a></span>
-	<span class="submitBtn"><a href="${context}/board.do?action=update&pageName=detail">
-	<input class="hanbit-btn submit" name="update" type="submit" value="수정 완료" /></a>
-	<input type="hidden" name="action" value="update" />
-	<input type="hidden" name="page" value="detail" />
-</span>
-	
+<div class="container-fluid" style="width:80%">
+<div><h1>수정 페이지</h1></div>
+		<input type="text" name="writer" style="margin-top:20px"  class="form-control" placeholder="작성자 이름" />
+		<input type="text" name="title" style="margin-top:20px" class="form-control"  placeholder="제목" /><br />
+	    <div class="row">
+		    <div style="width:97%; margin:10px auto" >
+	      		<textarea class="form-control" rows="20" id="comment"></textarea>
+		    </div>
+	    </div>
+	   
+	<a href="${context}/board.do?action=move&pageName=upload"><input type="submit" class="btn btn-warning" style="float:right;width:100px;margin-right:10px" value="UPLOAD"/></a>
+	<a href="${context}/board.do?action=update"><input type="submit" class="btn btn-primary" style="float:right;width:100px;margin-right:10px" value="UPDATE"/></a>
 </div>
-</div>
-
-</form>
 
 </body>
 </html>

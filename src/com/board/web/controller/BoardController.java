@@ -13,20 +13,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.tomcat.util.http.fileupload.disk.*;
-import org.apache.tomcat.util.http.fileupload.servlet.*;
-import org.apache.tomcat.util.http.fileupload.util.*;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.board.web.domain.ArticleBean;
 import com.board.web.service.BoardService;
 import com.board.web.serviceImpl.BoardServiceImpl;
 
-import org.apache.commons.fileupload.*;
+
 /**
 UPLOAD_DIRECTORY: name of the directory on the server where upload file will be stored. 
 					The directory is chosen to be relative to the web application’s directory.
@@ -38,15 +34,17 @@ MAX_FILE_SIZE: specifies the maximum size of an upload file.
 MAX_REQUEST_SIZE: specifies the maximum size of a HTTP request which contains the upload file and other form’s data, 
 					so this constant should be greater than the MAX_FILE_SIZE.
 					All sizes are measured in bytes.
- * */
+*/
 @SuppressWarnings("unused")
 @WebServlet("/board.do")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "upload";
-	private static final int THRESHOLD_SIZE     = 1024 * 1024 * 3;  // 3MB
+	private static final String VIEW_DIRECTORY   = "/WEB-INF/views/"; 
+	private static final int MAX_MEMORY_SIZE     = 1024 * 1024 * 3;  // 3MB
 	private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
 	private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -60,7 +58,7 @@ public class BoardController extends HttpServlet {
 			foo = "0";
 		}
 		System.out.println("ACTION :"+action);
-		String view = "/WEB-INF/views/" + directory + "/" + action + ".jsp";
+		String view = VIEW_DIRECTORY + directory + "/" + action + ".jsp";
 		BoardService service = BoardServiceImpl.getInstance();
 		ArticleBean bean = new ArticleBean();
 		int pageNumber = Integer.parseInt(foo);
@@ -75,7 +73,7 @@ public class BoardController extends HttpServlet {
 		HashMap<String, Object> param = new HashMap<>();
 		switch (action) {
 		case "move":
-			view = "/WEB-INF/views/" + directory + "/" + pageName + ".jsp";
+			view = VIEW_DIRECTORY + directory + "/" + pageName + ".jsp";
 			request.getRequestDispatcher(view).forward(request, response);
 			break;
 		case "list":
@@ -89,11 +87,18 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("pageNumber", pageNumber);
 			request.getRequestDispatcher(view).forward(request, response);
 			break;
-
+		case "write": 
+			System.out.println("write enter");
+			request
+			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/upload.jsp")
+			.forward(request, response);
+			break;
 		case "upload":
-			System.out.println("ABCDEFG");
+			System.out.println("upload enter");
+		
+			
 			Map<String, String> map = new HashMap<String, String>();
-			view = "/WEB-INF/views/" + directory + "/" + "write" + ".jsp";
+			view = VIEW_DIRECTORY + directory + "/" + "detail2" + ".jsp";
 			System.out.println("WRITE ENTER ServletContext :"+getServletContext());
 			System.out.println("WRITE ENTER RealPath :"+getServletContext().getRealPath(""));
 			String realPath="C:\\Users\\hb2000\\JavaProjects\\eclipse4class14\\workspace\\noticeboard1705mvc\\WebContent\\resources\\upload\\";
@@ -104,31 +109,26 @@ public class BoardController extends HttpServlet {
 	        }
 	        System.out.println("ServletFileUpload is Not Null");  
 	        // configures upload settings
-	        DiskFileItemFactory factory = new DiskFileItemFactory();
-	        factory.setSizeThreshold(THRESHOLD_SIZE);
-	        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-	         
+	        FileItemFactory factory = new DiskFileItemFactory();
+	        ServletContext context=this.getServletConfig().getServletContext();
+	        File repository=(File) context.getAttribute("javax.servlet.context.tempdir");
+	/*        factory.setRepository(repository);
+	        factory.setSizeThreshold(MAX_MEMORY_SIZE);*/
 	        ServletFileUpload upload = new ServletFileUpload(factory);
 	        upload.setFileSizeMax(MAX_FILE_SIZE);
 	        upload.setSizeMax(MAX_REQUEST_SIZE);
-	         
+	        List<FileItem> items=null;
 	        // constructs the directory path to store upload file
 	     //   String uploadPath = getServletContext().getRealPath("")+ File.separator + UPLOAD_DIRECTORY;
 	        // creates the directory if it does not exist
 	        System.out.println("uploadPath :"+realPath);
-	        File uploadDir = new File(realPath);
-	        if (!uploadDir.exists()) {
-	        	System.out.println("!uploadDir.exists()");
-	            uploadDir.mkdir();
-	        }
-	        System.out.println("try before!!!!!!!!!");
 	        try {
 	        	System.out.println("try after!!!!!!!!!");
 	    
-	        	List<FileItem> items = upload.parseRequest(new ServletRequestContext(request)); 
-	            System.out.println("List<?> items"+items);
+	        	items = upload.parseRequest( request); 
+	            System.out.println("List<FileItem> items"+items);
 	            Iterator<FileItem> iter = items.iterator();
-	            System.out.println("Iterator<?> iter");
+	            System.out.println("Iterator<?> iter ???"+iter.hasNext());
 	            // iterates over form's fields
 	            System.out.println("items.iterator() : iterator");
 	            while (iter.hasNext()) {
@@ -166,7 +166,9 @@ public class BoardController extends HttpServlet {
 	     //   getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
 	        System.out.println("view before@@@@@@@@");
 
-			request.getRequestDispatcher(view).forward(request, response);
+	        request
+			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/upload.jsp")
+			.forward(request, response);
 			break;
 		case "update":
 			title = request.getParameter("title");
@@ -177,7 +179,9 @@ public class BoardController extends HttpServlet {
 			service.updateArticle(bean);
 			request.setAttribute("title", bean.getTitle());
 			request.setAttribute("content", bean.getContent());
-			request.getRequestDispatcher(view).forward(request, response);
+			request
+			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/update.jsp")
+			.forward(request, response);
 			break;
 
 		case "delete":
@@ -192,6 +196,12 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("regiDate", bean.getRegiDate());
 			request.getRequestDispatcher(view).forward(request, response);
 			break;
+		case "detail":
+			System.out.println("delete entered form controller");
+			request
+			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/detail.jsp")
+			.forward(request, response);
+			break;	
 
 		}
 	}

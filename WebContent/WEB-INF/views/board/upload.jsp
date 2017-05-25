@@ -19,11 +19,8 @@
 	<script src= "https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js" ></script >
 </head>
 <body>
-
 <div class="container-fluid" style="width:80%">
-<div ><h1>작성 페이지</h1></div>
-<div class="row">
-	<form action="${context}/board.do?action=write" name="insert_item" method="post" ENCTYPE="multipart/form-data" >
+<div><h1>업로드 페이지</h1></div>
 		<input type="text" name="writer" style="margin-top:20px"  class="form-control" placeholder="작성자 이름" />
 		<input type="text" name="title" style="margin-top:20px" class="form-control"  placeholder="제목" /><br />
 	    <div class="row">
@@ -31,12 +28,9 @@
 	      		<textarea class="form-control" rows="20" id="comment"></textarea>
 		    </div>
 	    </div>
-	    
-	    <input type="reset" class="btn btn-danger" style="float:right;width:100px;margin-right:10px" value="CANCEL"/>
-	    <input type="submit" class="btn btn-primary" style="float:right;width:100px;margin-right:10px" value="SUBMIT"/>
-	    <input type="hidden" name="action" value="write" />
-    </form>
-</div>
+	   
+	<input type="reset" class="btn btn-warning" style="float:right;width:100px;margin-right:10px" value="FILE"/>
+	<a href="${context}/board.do?action=detail"><input type="submit" class="btn btn-primary" style="float:right;width:100px;margin-right:10px" value="DETAIL"/></a>
 </div>
 <form action="${context}/board.do?action=upload" id="modal" class="mfp-hide white-popup" method="post" enctype="multipart/form-data">
 
@@ -44,7 +38,7 @@
 	
 	<h4 style="display:inline">ATTACH FILES</h4> <span style="margin-left:100px"><a class="popup-modal-dismiss" href="#">Close</a></span>	
 	<input type="file" style="margin:10px auto"/>
-	<input type="submit" class="btn btn-primary" style="float:right;width:100px;margin-right:10px" value="SUBMIT"/>
+	<a href="${context}/board.do?action=detail"><input type="submit" class="btn btn-primary" style="float:right;width:100px;margin-right:10px" value="SUBMIT"/></a>
 </form>
 </body>
 <script>
