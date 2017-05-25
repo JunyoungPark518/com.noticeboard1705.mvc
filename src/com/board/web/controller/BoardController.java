@@ -167,7 +167,7 @@ public class BoardController extends HttpServlet {
 	        System.out.println("view before@@@@@@@@");
 
 	        request
-			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/upload.jsp")
+			.getRequestDispatcher(VIEW_DIRECTORY + directory + "/detail.jsp")
 			.forward(request, response);
 			break;
 		case "update":
